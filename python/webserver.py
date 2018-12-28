@@ -8,6 +8,7 @@ from bottle import route, run, request, view
 from .vision.azure_api import Azure_API
 from . import config
 from . import logic
+import json
 
 
 @route('/')
@@ -17,7 +18,6 @@ def capture():
 
 
 @route('/image', method='POST')
-@view('result')
 def result():
     # #imgb64 = request.forms.get("image")
     # imgb64 = request.files.get("image")
@@ -31,10 +31,16 @@ def result():
     imgbytes = Image.open(file)
     #imgbytes = open(request.files['image'].filename, "rb")
     img_png, stats = logic.my_logic(imgbytes, az_client)
-    return {
-        "image": b"data:image/png;base64,"+base64.b64encode(img_png),
+    result = {
+        "image": r"data:image/png;base64,"+base64.b64encode(img_png).decode('ascii'),
         "stats": stats
     }
+
+    #file = open("resources/result.json", "w+")
+    #str_result = json.dumps(result)
+    #file.write(str_result)
+    #file.closed
+    return result
 
 
 def __getdata(request):

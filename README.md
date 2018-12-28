@@ -18,3 +18,8 @@ pip install -r requirements.txt
 python -m python.webserver
 ```
 And browse localhost:8080
+
+Examples:
+- POST request
+```curl -F "image=@myfile.jpg" http://localhost:8080/image```
+- JSON response on `resources/result.json`
