@@ -30,10 +30,10 @@ def gender_stats(json_faces):
     percent = int(percent)
 
     result["percent"] = percent
-    score = (50-abs(50-percent))*2
+    score = (50-abs(50-percent))*0.2
     result["score"] = score
 
-    mytext = "{}% female. Score: {}%".format(percent, score)
+    mytext = "{}% female. Score: {}".format(percent, score)
 
     result["text"] = mytext
 

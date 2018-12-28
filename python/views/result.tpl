@@ -107,7 +107,6 @@
 
 		<!-- Show me the modified image -->
 		<div class="image">
-			<h3>This is your processed image</h3>
 			<img src="{{ image }}" />
 		</div>
 		<center>
