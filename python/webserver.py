@@ -17,16 +17,13 @@ import json
 def capture():
     return None
 
+@route('/image_web', method='POST')
+@view('result')
+def image_web():
+    return result()
 
 @route('/image', method='POST')
-@view('result')
 def result():
-    # #imgb64 = request.forms.get("image")
-    # imgb64 = request.files.get("image")
-    # print(type(imgb64))
-    # if imgb64.startswith('data:'):  # data:image/png;base64,iVB
-    #     imgb64 = imgb64[imgb64.find(',')+1 : ]
-    # imgbytes = base64.b64decode(imgb64)  # Image is bytes b''
 
     file = __getdata(request)
     img_file = open(file, "rb")
@@ -38,10 +35,6 @@ def result():
         "stats": stats
     }
 
-    #file = open("resources/result.json", "w+")
-    #str_result = json.dumps(result)
-    #file.write(str_result)
-    #file.closed
     return result
 
 

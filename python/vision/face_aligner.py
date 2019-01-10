@@ -151,7 +151,7 @@ class FaceAligner:
 def align_face(img):
 
     detector = dlib.get_frontal_face_detector()
-    predictor = dlib.shape_predictor("/home/milhouse/projects/diversityscore/resources/mdl/shape_predictor_68_face_landmarks.dat")
+    predictor = dlib.shape_predictor("resources/mdl/shape_predictor_68_face_landmarks.dat")
 
     fa = FaceAligner(predictor, desiredFaceWidth=200)
 

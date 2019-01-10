@@ -226,7 +226,7 @@
 			function() {
 				var form = document.createElement("form");
 				form.method = "post";
-				form.action = "/image";
+				form.action = "/image_web";
 				//var field = document.createElement("input");
 				//field.type = "text";
 				//field.name = "image";
