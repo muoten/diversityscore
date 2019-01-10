@@ -93,7 +93,7 @@ class Local_API:
 
         data = json.dumps(data_dict)
 
-        json_response = requests.post("http://localhost:8501/v1/models/my_model/versions/2:predict", data=data)
+        json_response = requests.post("http://localhost:8501/v1/models/my_model/versions/3:predict", data=data)
 
 
         # Extract text from JSON
@@ -107,7 +107,9 @@ class Local_API:
             element = {}
             gender = self.gender_categories[predictions[i]["gender"]]
             race = self.race_categories[predictions[i]["race"]]
-            element["faceAttributes"] = {"gender":gender, "race":race}
+            #if max(predictions[i]["race_score"]) < 0.39:
+            #    race = "undefined"
+            element["faceAttributes"] = {"gender":gender, "race":race, "race_score": predictions[i]["race_score"]}
             element["faceRectangle"] = rectangles[i]
             result_dict.append(element)
 

@@ -57,7 +57,7 @@ def draw_label(drawcontext, xy, text):
     return drawcontext
 
 
-def process_face(img, rect, gender):
+def process_face(img, rect, gender, race, race_score):
     left = int(rect['left'])
     top = int(rect['top'])
     width = int(rect['width'])
@@ -73,11 +73,18 @@ def process_face(img, rect, gender):
     box_drawrect = [(left, top), (left+width, top + height)]
 
     draw = ImageDraw.Draw(img)
-    draw_rect(draw, box_drawrect, outline='red', width=10)
+    color = "white"
 
     # Label face
+    # Gender with first letter
     label = gender[:1].upper()
+
+    width = int(max(race_score)*20)
+    if (race != 'white') and (max(race_score) > 0.35):
+        color = 'green'
+
     draw_label(draw, (left, top), label)
+    draw_rect(draw, box_drawrect, outline=color, width=width)
     del draw
 
     return img
@@ -102,7 +109,8 @@ def my_logic(imgbytes, az_client):
 
         rect = face['faceRectangle']
         gender = face['faceAttributes']['gender']
-        imgpil = process_face(imgpil, rect, gender)
+        race = face['faceAttributes']['race']
+        imgpil = process_face(imgpil, rect, gender, race, face['faceAttributes']['race_score'])
 
     stats = gender_stats(faces_raw)
 
