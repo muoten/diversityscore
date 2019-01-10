@@ -96,8 +96,10 @@ def my_logic(imgbytes, az_client):
     faces_raw = az_client.face_detect(img_path)
     os.remove(img_path)  # No longer needed
 
+    print(faces_raw)
 
     for face in faces_raw:
+
         rect = face['faceRectangle']
         gender = face['faceAttributes']['gender']
         imgpil = process_face(imgpil, rect, gender)

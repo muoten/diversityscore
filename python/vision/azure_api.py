@@ -10,7 +10,7 @@ class Azure_API:
         self.client=CF
 
 
-    def face_detect(self, url=None):
+    def _face_detect(self, url=None):
         """Annotate an image from 2 sources, choose one.
         imgbytes: image bytes
         url: public url of the image
@@ -26,9 +26,9 @@ class Azure_API:
         return(result)
 
 
-    def __face_detect(self, url=None):
+    def face_detect(self, url=None):
 
-        with open('resources/dummy1.json') as f:
+        with open('resources/dummy3.json') as f:
             data = json.load(f)
         pprint.pprint(data)
         print(type(data))

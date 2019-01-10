@@ -6,6 +6,7 @@ from PIL import Image
 from bottle import route, run, request, view
 
 from .vision.azure_api import Azure_API
+from .vision.local_api import Local_API
 from . import config
 from . import logic
 import json
@@ -18,6 +19,7 @@ def capture():
 
 
 @route('/image', method='POST')
+@view('result')
 def result():
     # #imgb64 = request.forms.get("image")
     # imgb64 = request.files.get("image")
@@ -56,7 +58,8 @@ def __getdata(request):
 
 if __name__=="__main__":
     #Clients you will need
-    az_client = Azure_API(config.AZURE_KEY, config.AZURE_URL)
+    #az_client = Azure_API(config.AZURE_KEY, config.AZURE_URL)
+    az_client = Local_API()
 
     # Webserver
     bottle.TEMPLATE_PATH = [config.BOTTLE_PATH_VIEWS]
