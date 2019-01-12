@@ -1,7 +1,8 @@
 # diversityscore
 
 **Diversifynd** is a platform that supports diversity.
-Users can check which events or organizations have a better degree of diversity
+- Users can check which events or organizations have a better degree of representation in term of gender or race.
+- Forthis purpose computer vision is applied to images of these events or organizations
 
 ## Install
 Create virtualenv.
