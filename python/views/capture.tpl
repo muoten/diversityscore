@@ -158,13 +158,12 @@
 
 <body>
 	<header>
-		<h1>Diversifynd</h1>
-		<h2>Gender diversity demo</h2>
+		<h2>Diversifynd: Gender and race diversity demo</h1>
 	</header>
 
 	<section id="input-selector">
 		<div id="dropdown">
-			<input type='file' accept="image/*" onchange="readURL(this);" capture/>	
+			<input id='inputFile' type='file' multiple="multiple" onchange="readURL(this);" accept="image/*" capture/>
 			<span>Click or drop your file here</span>
 		</div>
 		<span>OR</span>
@@ -179,23 +178,31 @@
 		<button type="button" class="secondary" onclick="showInputs();">Repeat image</button>
 		<button type="button" id="btn_submit">Send image!</button>
 	</section>
-	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		// Elements for taking the snapshot
 		var video = document.getElementById('video');
 		var preview = document.getElementById('img_preview');
 
 		// SHOW PREVIEW OF SELECTED IMAGE
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					preview.src = e.target.result;
-				};
-				reader.readAsDataURL(input.files[0]);
-				showResults();
-			}
-		}
+
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#img_preview').attr('src', e.target.result);
+                    //preview.attr('src', e.target.result);
+                 }
+                reader.readAsDataURL(input.files[0]);
+                showResults();
+            }
+        }
+
+        $("#inputFile").change(function () {
+            readURL(this);
+        });
+
 
 		// SHOW WEBCAM SHOT
 

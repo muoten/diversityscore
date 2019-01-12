@@ -90,8 +90,7 @@
 
 	<body>
 		<header>
-			<h1>Diversifynd</h1>
-			<h2>Gender diversity demo</h2>
+			<h2>Diversifynd: Gender and race diversity demo</h2>
 		</header>
 
 		<div class="result-box">
