@@ -3,7 +3,7 @@ import os
 
 
 BOTTLE_HOST = '0.0.0.0'
-BOTTLE_PORT = 8080
+BOTTLE_PORT = os.environ.get('PORT')
 BOTTLE_PATH_VIEWS = os.path.dirname(__file__)+"/views"  # path for templates
 BOTTLE_MAX_BYTES_BODY = 10*(2**20)  # 10MB max file
 

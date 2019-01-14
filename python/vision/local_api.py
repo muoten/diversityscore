@@ -2,6 +2,7 @@ import requests
 import json
 from .face_aligner import *
 from PIL import Image
+import pprint
 
 # docker run -p 8501:8501 -v ~/projects/race_gender_recognition/export:/models/my_model -e MODEL_NAME=my_model -t tensorflow/serving
 
@@ -49,6 +50,15 @@ class Local_API:
         return rects
 
     def face_detect(self, file_url=None):
+
+        with open('resources/dummy4.json') as f:
+            data = json.load(f)
+        #pprint.pprint(data)
+        #print(type(data))
+        return data
+
+
+    def _face_detect(self, file_url=None):
 
 
 
