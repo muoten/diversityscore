@@ -7,7 +7,8 @@ WORKDIR /app
 # add the current directory to the container as /app
 ADD . /app
 RUN apt-get -y update
-RUN apt-get -y install build-essential cmake libglib2.0 libsm6 libxrender1 libxext6
+RUN apt-get -y install build-essential cmake libglib2.0 libsm6 libxrender1 libxext6 ttf-freefont
+
 # execute everyone's favorite pip command, pip install -r
 RUN pip install -r requirements.txt
 
