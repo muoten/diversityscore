@@ -60,16 +60,25 @@ def diversity_stats(json_faces):
     result["total"] = len(faces)
     result["non_white"] = non_white
 
+    result = update_stats_helper(result)
+
+    return result
+
+def update_stats_helper(result):
+    n_faces = result["total"]
+    females = result["female"]
+    non_white = result["non_white"]
+
     # Get women percentage
     percent = 0
-    n_faces = len(faces)
+
     if (n_faces) > 0:
         percent = 100 * females / n_faces
     percent = int(percent)
 
     # Get race percentage
     race_percent = 0
-    n_faces = len(faces)
+
     if (n_faces) > 0:
         race_percent = 100 * non_white / n_faces
     race_percent = int(race_percent)
@@ -82,12 +91,10 @@ def diversity_stats(json_faces):
     result["score"] = "{0:.1f}".format(score)
 
     mytext = "{0}% female, {1}% non caucasian. Score: {2:.1f}".format(percent, race_percent, score)
+    print(mytext)
 
     result["text"] = mytext
-
     return result
-
-
 
 def draw_rect(drawcontext, xy, outline=None, width=0):
     (x1, y1), (x2, y2) = xy

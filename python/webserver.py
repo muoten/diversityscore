@@ -12,6 +12,35 @@ from . import logic
 import json
 
 
+@route('/stats_web', method='POST')
+@view('result')
+def stats_web():
+    return stats()
+
+@route('/stats', method='POST')
+def stats():
+
+    females = request.forms['female']
+    total = request.forms['total']
+    non_white = request.forms['non_white']
+
+    my_result = result()
+    stats = my_result["stats"]
+
+    # Stats with Pic stats
+    stats["female"] = int(stats["female"]) + int(females)
+    stats["total"] = int(stats["total"]) + int(total)
+    stats["non_white"] = int(stats["non_white"]) + int(non_white)
+    stats["pic_text"] = stats["text"]
+    stats["pic_score"] = stats["score"]
+    print(stats["score"])
+
+    stats = logic.update_stats_helper(stats)
+    # New stats with aggregated values
+    my_result["stats"] = stats
+
+    return my_result
+
 @route('/')
 @view('capture')
 def capture():

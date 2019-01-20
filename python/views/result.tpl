@@ -99,7 +99,8 @@
 				<h3>I can't see anything. I'm blind!</h3>
 			% end
 			% if stats!="nothing":
-				<h3>Stats: {{ stats["text"] }}</h3>
+			    <h3>Pic stats: {{ stats["pic_text"] }}</h3>
+				<h3>Aggregated: {{ stats["text"] }}</h3>
 			% end
 		</div>
 

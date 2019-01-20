@@ -227,21 +227,30 @@
 			showResults();
 		};
 
+        function hiddenField(name, value) {
+                var input = document.createElement("input");
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", name);
+                input.setAttribute("value", value);
+                return input;
+        }
 		//BUTTONS
 		document.getElementById("btn_submit").addEventListener(
 			"click",
 			function() {
 				var form = document.createElement("form");
 				form.method = "post";
-				form.action = "/image_web";
-				//var field = document.createElement("input");
-				//field.type = "text";
-				//field.name = "image";
-				//field.value = preview.src;
+				//form.action = "/image_web";
+				form.action = "/stats_web";
 
 				var field = document.getElementsByTagName("input")[0]
 				field.name = "image";
 				form.appendChild(field);
+
+				form.appendChild(hiddenField("female", 0));
+				form.appendChild(hiddenField("non_white", 1));
+				form.appendChild(hiddenField("total", 4));
+
 				form.enctype="multipart/form-data";
 				document.body.appendChild(form);
 				console.log(form)
