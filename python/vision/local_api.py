@@ -6,6 +6,11 @@ import pprint
 
 # docker run -p 8501:8501 -v ~/projects/race_gender_recognition/export:/models/my_model -e MODEL_NAME=my_model -t tensorflow/serving
 
+#DLIB_LANDMARKS_URI = "/home/milhouse/projects/diversityscore/resources/mdl/shape_predictor_68_face_landmarks.dat"
+DLIB_LANDMARKS_URI = "resources/mdl/shape_predictor_68_face_landmarks.dat"
+
+MY_TF_MODEL_URL = "https://diversifynd-model.herokuapp.com/v1/models/model/versions/3:predict"
+
 class Local_API:
     def __init__(self):
         self.image_size = 200
@@ -26,7 +31,7 @@ class Local_API:
     def _detect_faces(self,img):
 
         detector = dlib.get_frontal_face_detector()
-        predictor = dlib.shape_predictor("/home/milhouse/projects/diversityscore/resources/mdl/shape_predictor_68_face_landmarks.dat")
+        predictor = dlib.shape_predictor(DLIB_LANDMARKS_URI)
 
         fa = FaceAligner(predictor, desiredFaceWidth=200)
 
@@ -49,7 +54,7 @@ class Local_API:
 
         return rects
 
-    def face_detect(self, file_url=None):
+    def _face_detect(self, file_url=None):
 
         with open('resources/dummy4.json') as f:
             data = json.load(f)
@@ -58,7 +63,7 @@ class Local_API:
         return data
 
 
-    def _face_detect(self, file_url=None):
+    def face_detect(self, file_url=None):
 
 
 
@@ -72,8 +77,7 @@ class Local_API:
         #img.show()
 
         faces = self._detect_faces(image)
-        predictor = dlib.shape_predictor(
-            "/home/milhouse/projects/diversityscore/resources/mdl/shape_predictor_68_face_landmarks.dat")
+        predictor = dlib.shape_predictor(DLIB_LANDMARKS_URI)
 
 
         fa = FaceAligner(predictor, desiredFaceWidth=200)
@@ -103,7 +107,7 @@ class Local_API:
 
         data = json.dumps(data_dict)
 
-        json_response = requests.post("http://localhost:8501/v1/models/my_model/versions/3:predict", data=data)
+        json_response = requests.post(MY_TF_MODEL_URL, data=data)
 
 
         # Extract text from JSON
