@@ -5,7 +5,8 @@ from PIL import Image, ImageFilter, ImageDraw, ImageFont
 
 import uuid
 
-RACE_THRESHOLD = 0.3
+#RACE_THRESHOLD = 0.3
+RACE_THRESHOLD = 0.4
 
 def gender_stats(json_faces):
     # data is binary, but can be URI
