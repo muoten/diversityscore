@@ -4,6 +4,9 @@
 - Users can check which events or organizations have a better degree of representation in term of gender or race.
 - For this purpose computer vision is applied to images of these events or organizations
 
+
+![hackathon startmeapp](resources/img/thealfredolambdas_hackathon.png)
+
 ## Deploy
 Build image for demo web and REST service.
 ```
