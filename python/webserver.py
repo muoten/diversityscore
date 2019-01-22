@@ -33,7 +33,6 @@ def stats():
     stats["non_white"] = int(stats["non_white"]) + int(non_white)
     stats["pic_text"] = stats["text"]
     stats["pic_score"] = stats["score"]
-    print(stats["score"])
 
     stats = logic.update_stats_helper(stats)
     # New stats with aggregated values

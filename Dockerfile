@@ -4,14 +4,15 @@ FROM python:3.7-slim
 RUN apt-get -y update
 RUN apt-get -y install build-essential cmake libglib2.0 libsm6 libxrender1 libxext6 ttf-freefont
 
+COPY requirements.txt requirements.txt
+# execute everyone's favorite pip command, pip install -r
+RUN pip install -r requirements.txt
+
 # set the working directory in the container to /app
 WORKDIR /app
 
 # add the current directory to the container as /app
 ADD . /app
-
-# execute everyone's favorite pip command, pip install -r
-RUN pip install -r requirements.txt
 
 # unblock port 80 for the Bottle app to run on
 EXPOSE 80

@@ -91,7 +91,6 @@ def update_stats_helper(result):
     result["score"] = "{0:.1f}".format(score)
 
     mytext = "{0}% female, {1}% non caucasian. Score: {2:.1f}".format(percent, race_percent, score)
-    print(mytext)
 
     result["text"] = mytext
     return result
@@ -158,8 +157,6 @@ def my_logic(imgbytes, az_client):
     imgpil.save(img_path,'PNG')  # Better not to store in hard disk
     faces_raw = az_client.face_detect(img_path)
     os.remove(img_path)  # No longer needed
-
-    print(faces_raw)
 
     for face in faces_raw:
 
