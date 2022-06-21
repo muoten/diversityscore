@@ -4,7 +4,7 @@ chardet==3.0.4
 cognitive-face==1.4.2
 dlib==19.16.0
 idna==2.8
-numpy==1.15.4
+numpy==1.22.0
 opencv-python==4.0.0.21
 Pillow==6.2.0
 requests==2.21.0
